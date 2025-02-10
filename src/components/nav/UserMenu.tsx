@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Avatar from "../Avatar";
 import { AiFillCaretDown } from "react-icons/ai";
 import Link from "next/link";
@@ -9,11 +9,7 @@ import { signOut } from "next-auth/react";
 import BackDrop from "./BackDrop";
 import { SafeUser } from "@/types";
 
-interface UserMenuProps {
-  currentUser: SafeUser | null;
-}
-
-const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+const UserMenu = ({ currentUser }: { currentUser: SafeUser | null }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -25,46 +21,19 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       <div className="relative z-30">
         <div
           onClick={toggleOpen}
-          className="
-        p-2
-        border-[1px]
-        border-slate-400
-        flex
-        flex-row
-        items-center
-        gap-1
-        rounded-full
-        cursor-pointer
-        hover:shadow-md
-        transition
-        text-slate-700
-        "
+          className="p-2 border-[1px] border-slate-400 flex flex-row items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700"
         >
           <Avatar src={currentUser?.image} />
           <AiFillCaretDown />
         </div>
         {isOpen && (
-          <div
-            className="absolute
-            rounded-md
-            shadow-md
-            w-[170px]
-            bg-white
-            overflow-hidden
-            right-0
-            top-12
-            text-sm
-            flex
-            flex-col
-            cursor-pointer
-            "
-          >
+          <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer">
             {currentUser ? (
               <div>
-                <Link href="/orders">
+                <Link href={"/orders"}>
                   <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>
                 </Link>
-                <Link href="/admin">
+                <Link href={"/admin"}>
                   <MenuItem onClick={toggleOpen}>Admin Dashboard</MenuItem>
                 </Link>
                 <hr />
@@ -79,10 +48,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               </div>
             ) : (
               <div>
-                <Link href="/login">
+                <Link href={"/login"}>
                   <MenuItem onClick={toggleOpen}>Login</MenuItem>
                 </Link>
-                <Link href="/register">
+                <Link href={"/register"}>
                   <MenuItem onClick={toggleOpen}>Register</MenuItem>
                 </Link>
               </div>

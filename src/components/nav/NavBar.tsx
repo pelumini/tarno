@@ -1,14 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense } from "react";
-import { Redressed } from "next/font/google";
-import SearchBar from "./SearchBar";
-import Categories from "./Categories";
+import { Syne } from "next/font/google";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentuser } from "@/actions/getCurrentUser";
-import Container from "../Container";
+import Categories from "./Categories";
+import SearchBar from "./SearchBar";
 
-const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
+const syne = Syne({ subsets: ["latin"] });
 
 const Navbar = async () => {
   const currentUser = await getCurrentuser();
@@ -25,7 +25,7 @@ const Navbar = async () => {
   "
     >
       <div className="py-4 border-b-[1px]">
-        <Container>
+        <div className="container">
           <div
             className="
           flex
@@ -35,7 +35,7 @@ const Navbar = async () => {
           md:gap-0
           "
           >
-            <Link href="/" className={`font-bold text-2xl`}>
+            <Link href="/" className={`${syne.className} font-bold text-2xl`}>
               Tarno
             </Link>
             <div className="hidden md:block">
@@ -48,7 +48,7 @@ const Navbar = async () => {
               <UserMenu currentUser={currentUser} />
             </div>
           </div>
-        </Container>
+        </div>
       </div>
       <Categories />
     </div>

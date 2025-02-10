@@ -1,9 +1,11 @@
-interface MenuItemProps {
+import React from "react";
+
+type MenuItemProps = {
   children: React.ReactNode;
   onClick: () => void;
-}
+};
 
-const MenuItem: React.FC<MenuItemProps> = ({ children, onClick }) => {
+const MenuItem = ({ children, onClick }: MenuItemProps) => {
   return (
     <div
       onClick={onClick}
