@@ -1,5 +1,5 @@
 import { getCurrentuser } from "@/actions/getCurrentUser";
-import prisma from "@/lib/prisma";
+import prisma from "@/libs/prisma";
 import { NextResponse } from "next/server";
 
 export async function DELETE(
